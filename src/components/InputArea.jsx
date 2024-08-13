@@ -11,9 +11,9 @@ const InputArea = ({ countryList, setCountryList }) => {
   });
 
   const medalNumberChange = (event) => {
-    const { key, value } = event.target;
+    const { name, value } = event.target;
     setMedalNumber((prev) => {
-      return { ...prev, [key]: value };
+      return { ...prev, [name]: value };
     });
   };
 
