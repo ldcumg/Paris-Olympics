@@ -4,28 +4,47 @@ import Button from "./Button";
 
 const InputArea = ({ countryList, setCountryList }) => {
   const [name, setName] = useState("");
-  const [gold, setGold] = useState(0);
-  const [silver, setSilver] = useState(0);
-  const [bronze, setBronze] = useState(0);
+  const [medalNumber, setMedalNumber] = useState({
+    gold: 0,
+    silver: 0,
+    bronze: 0,
+  });
+
+  const medalNumberChange = (event) => {
+    const { key, value } = event.target;
+    setMedalNumber((prev) => {
+      return { ...prev, [key]: value };
+    });
+  };
 
   const enteredCountry = {
     name: name,
-    gold: gold,
-    silver: silver,
-    bronze: bronze,
+    gold: medalNumber.gold,
+    silver: medalNumber.silver,
+    bronze: medalNumber.bronze,
   };
 
   const medals = [
-    { medalName: "금메달", numberOfMedal: gold, setValue: setGold },
-    { medalName: "은메달", numberOfMedal: silver, setValue: setSilver },
-    { medalName: "동메달", numberOfMedal: bronze, setValue: setBronze },
+    { medalName: "금메달", numberOfMedal: medalNumber.gold, objKey: "gold" },
+    {
+      medalName: "은메달",
+      numberOfMedal: medalNumber.silver,
+      objKey: "silver",
+    },
+    {
+      medalName: "동메달",
+      numberOfMedal: medalNumber.bronze,
+      objKey: "bronze",
+    },
   ];
 
   const resetInput = () => {
     setName("");
-    setGold(0);
-    setSilver(0);
-    setBronze(0);
+    setMedalNumber({
+      gold: 0,
+      silver: 0,
+      bronze: 0,
+    });
   };
 
   const addCountryHandler = (target) => {
@@ -73,10 +92,12 @@ const InputArea = ({ countryList, setCountryList }) => {
       {medals.map((medal) => {
         return (
           <MedalNumberInput
-            key={medal.medalName}
+            key={medal.objKey}
+            objKey={medal.objKey}
             medalName={medal.medalName}
-            numberOfMedal={medal.numberOfMedal}
-            setValue={medal.setValue}
+            medalNumber={medalNumber}
+            medalNumberChange={medalNumberChange}
+            setMedalNumber={setMedalNumber}
           />
         );
       })}

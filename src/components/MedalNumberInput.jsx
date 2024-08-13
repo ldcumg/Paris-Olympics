@@ -1,13 +1,30 @@
-const MedalNumberInput = ({ medalName, numberOfMedal, setValue }) => {
+const MedalNumberInput = ({
+  objKey,
+  medalName,
+  medalNumber,
+  medalNumberChange,
+  setMedalNumber,
+}) => {
   return (
     <span className="inputArea">
       <label>{medalName}</label>
       <input
         type="number"
-        value={numberOfMedal}
-        onChange={(event) => setValue(event.target.value)}
-        onFocus={(event) => Number(event.target.value) || setValue("")}
-        onBlur={(event) => event.target.value || setValue(0)}
+        name={objKey}
+        value={medalNumber[objKey]}
+        onChange={(event) => medalNumberChange(event)}
+        onFocus={(event) =>
+          Number(event.target.value) ||
+          setMedalNumber((prev) => {
+            return { ...prev, [objKey]: "" };
+          })
+        }
+        onBlur={(event) =>
+          event.target.value ||
+          setMedalNumber((prev) => {
+            return { ...prev, [objKey]: 0 };
+          })
+        }
         min={0}
       />
     </span>
