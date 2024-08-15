@@ -3,16 +3,21 @@ import { v4 as uuid } from "uuid";
 
 const ShowList = ({ countryList, setCountryList }) => {
   const deleteCountryHandler = (name) => {
-    const removedCountryList = countryList.filter(
-      (country) => country.name !== name
-    );
-    setCountryList(removedCountryList);
-    removedCountryList.length === 0
-      ? window.localStorage.removeItem("olympics")
-      : window.localStorage.setItem(
-          "olympics",
-          JSON.stringify(removedCountryList)
-        );
+    if (confirm("정말 삭제하겠습니까?")) {
+      const removedCountryList = countryList.filter(
+        (country) => country.name !== name
+      );
+      setCountryList(removedCountryList);
+      removedCountryList.length === 0
+        ? window.localStorage.removeItem("olympics")
+        : window.localStorage.setItem(
+            "olympics",
+            JSON.stringify(removedCountryList)
+          ),
+        alert("국가가 삭제되었습니다.");
+    } else {
+      alert("삭제를 취소하였습니다.");
+    }
   };
 
   countryList.sort((a, b) => {
