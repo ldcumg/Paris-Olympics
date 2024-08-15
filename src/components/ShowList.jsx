@@ -14,26 +14,28 @@ const ShowList = ({ countryList, setCountryList }) => {
         );
   };
 
+  countryList.sort((a, b) => {
+    if (b.gold !== a.gold) return b.gold - a.gold;
+    if (b.silver !== a.silver) return b.silver - a.silver;
+    return b.bronze - a.bronze;
+  });
 
   if (countryList.length > 0) {
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>순위</th>
-            <th>국가명</th>
-            <th>금메달</th>
-            <th>은메달</th>
-            <th>동메달</th>
-            <th id="action">액션</th>
-          </tr>
-        </thead>
-        <tbody>
-          {countryList
-            .sort((a, b) => b.bronze - a.bronze)
-            .sort((a, b) => b.silver - a.silver)
-            .sort((a, b) => b.gold - a.gold)
-            .map((country) => {
+      <section id="scoreList">
+        <table>
+          <thead>
+            <tr>
+              <th>순위</th>
+              <th>국가명</th>
+              <th>금메달</th>
+              <th>은메달</th>
+              <th>동메달</th>
+              <th id="action">액션</th>
+            </tr>
+          </thead>
+          <tbody>
+            {countryList.map((country) => {
               return (
                 <tr key={country.name}>
                   <td>{countryList.indexOf(country) + 1}</td>
@@ -52,8 +54,9 @@ const ShowList = ({ countryList, setCountryList }) => {
                 </tr>
               );
             })}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </section>
     );
   } else {
     return <h2>아직 추가된 국가가 없습니다. 메달을 추적하세요!</h2>;

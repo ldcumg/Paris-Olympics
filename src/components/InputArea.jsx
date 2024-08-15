@@ -73,8 +73,10 @@ const InputArea = ({ countryList, setCountryList }) => {
       );
       resetInput();
       alert("업데이트 되었습니다.");
+      return;
     } else {
       alert("해당국가가 없습니다 추가버튼을 눌러주세요.");
+      return;
     }
   };
 
