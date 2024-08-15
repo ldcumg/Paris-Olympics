@@ -1,4 +1,5 @@
 import Button from "./Button";
+import { v4 as uuid } from "uuid";
 
 const ShowList = ({ countryList, setCountryList }) => {
   const deleteCountryHandler = (name) => {
@@ -37,7 +38,7 @@ const ShowList = ({ countryList, setCountryList }) => {
           <tbody>
             {countryList.map((country) => {
               return (
-                <tr key={country.name}>
+                <tr key={uuid()}>
                   <td>{countryList.indexOf(country) + 1}</td>
                   <td>{country.name}</td>
                   <td>{country.gold}</td>
