@@ -14,11 +14,7 @@ const App = () => {
       </header>
       <main>
         <InputArea countryList={countryList} setCountryList={setCountryList} />
-        <ShowList
-          key={countryList}
-          countryList={countryList}
-          setCountryList={setCountryList}
-        />
+        <ShowList countryList={countryList} setCountryList={setCountryList} />
       </main>
     </>
   );
