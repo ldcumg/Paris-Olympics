@@ -26,7 +26,7 @@ const ShowList = ({ countryList, setCountryList }) => {
     return b.bronze - a.bronze;
   });
 
-  if (countryList.length > 0) {
+  if (countryList) {
     return (
       <section id="scoreList">
         <table>

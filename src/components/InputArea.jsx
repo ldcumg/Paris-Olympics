@@ -1,7 +1,6 @@
 import { useState } from "react";
 import MedalNumberInput from "./MedalNumberInput";
 import Button from "./Button";
-import { v4 as uuid } from "uuid";
 
 const InputArea = ({ countryList, setCountryList }) => {
   const [name, setName] = useState("");
@@ -30,19 +29,16 @@ const InputArea = ({ countryList, setCountryList }) => {
       medalName: "금메달",
       numberOfMedal: medalNumber.gold,
       objKey: "gold",
-      id: uuid(),
     },
     {
       medalName: "은메달",
       numberOfMedal: medalNumber.silver,
       objKey: "silver",
-      id: uuid(),
     },
     {
       medalName: "동메달",
       numberOfMedal: medalNumber.bronze,
       objKey: "bronze",
-      id: uuid(),
     },
   ];
 
@@ -102,7 +98,7 @@ const InputArea = ({ countryList, setCountryList }) => {
       {medals.map((medal) => {
         return (
           <MedalNumberInput
-            key={medal.id}
+            key={medal.medalName}
             objKey={medal.objKey}
             medalName={medal.medalName}
             medalNumber={medalNumber}
